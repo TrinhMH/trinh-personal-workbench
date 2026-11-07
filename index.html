@@ -3,27 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Personal Workbench | 个人工作台</title>
+  <title>Kieu Trinh's Personal Workbench | 个人工作台</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --sky-blue: #70B4E8;
+      --sky-blue: #5BA4E6;
       --sky-light: #EBF4FC;
-      --pastel-pink: #FFC0D3;
+      --pastel-pink: #FFB3C6;
       --pastel-pink-light: #FFF0F4;
       --text-main: #2C3E50;
       --text-muted: #6C7A89;
       --bg-gradient: linear-gradient(135deg, #EBF4FC 0%, #FFF0F4 100%);
-      --white-card: rgba(255, 255, 255, 0.92);
-      --shadow: 0 8px 30px rgba(112, 180, 232, 0.12);
+      --white-card: rgba(255, 255, 255, 0.95);
+      --shadow: 0 10px 30px rgba(91, 164, 230, 0.12);
       --border-radius: 20px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
@@ -34,23 +30,29 @@
       line-height: 1.6;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    .container { max-width: 1100px; margin: 0 auto; }
 
-    /* Header & Profile */
     header {
       background: var(--white-card);
       border-radius: var(--border-radius);
-      padding: 35px;
+      overflow: hidden;
       box-shadow: var(--shadow);
+      margin-bottom: 30px;
+      border: 2px solid #FFFFFF;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .header-body {
+      padding: 30px;
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 20px;
       align-items: center;
-      margin-bottom: 30px;
-      border: 2px solid #FFFFFF;
     }
 
     .profile-info h1 {
@@ -79,36 +81,20 @@
 
     .icons-bar {
       display: flex;
-      gap: 15px;
+      gap: 12px;
       font-size: 1.6rem;
       margin-top: 15px;
     }
 
-    /* Music Player */
     .music-card {
       background: linear-gradient(135deg, #70B4E8, #FFC0D3);
-      padding: 25px;
+      padding: 22px;
       border-radius: var(--border-radius);
       color: white;
       text-align: center;
       box-shadow: var(--shadow);
     }
 
-    .music-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-    }
-
-    .music-input {
-      width: 100%;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: none;
-      margin-top: 10px;
-      font-size: 0.85rem;
-    }
-
-    /* Layout Grid */
     .grid-2 {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -116,9 +102,7 @@
     }
 
     @media (max-width: 850px) {
-      header, .grid-2 {
-        grid-template-columns: 1fr;
-      }
+      .header-body, .grid-2 { grid-template-columns: 1fr; }
     }
 
     .card {
@@ -145,30 +129,26 @@
       font-weight: 400;
     }
 
-    /* Schedule & Checklist */
-    .routine-list, .travel-list {
-      list-style: none;
-    }
-
     .routine-item, .travel-item {
       background: var(--sky-light);
       padding: 15px;
-      border-radius: 12px;
+      border-radius: 14px;
       margin-bottom: 12px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
+      gap: 15px;
     }
 
-    .routine-item:hover {
-      transform: translateY(-2px);
-      background: #E1F0FA;
+    .travel-item { background: var(--pastel-pink-light); }
+
+    .thumb-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
     }
 
-    .travel-item {
-      background: var(--pastel-pink-light);
-    }
+    .item-content { flex: 1; }
 
     .tag {
       background: white;
@@ -179,11 +159,8 @@
       color: var(--sky-blue);
     }
 
-    .tag.pink {
-      color: #E91E63;
-    }
+    .tag.pink { color: #E91E63; }
 
-    /* Pomodoro Timer */
     .timer-display {
       font-size: 2.5rem;
       font-weight: 700;
@@ -201,14 +178,8 @@
       cursor: pointer;
       font-weight: 600;
       width: 100%;
-      transition: opacity 0.2s;
     }
 
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    /* Notes Area */
     textarea {
       width: 100%;
       height: 120px;
@@ -220,10 +191,6 @@
       outline: none;
     }
 
-    textarea:focus {
-      border-color: var(--sky-blue);
-    }
-
     table {
       width: 100%;
       border-collapse: collapse;
@@ -233,4 +200,213 @@
     th, td {
       padding: 10px;
       text-align: left;
-      border-bottom: 1px solid var(--sky-
+      border-bottom: 1px solid var(--sky-light);
+      font-size: 0.9rem;
+    }
+
+    th { color: var(--sky-blue); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <header>
+      <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1200&q=80" alt="Banner" class="banner-img">
+      <div class="header-body">
+        <div class="profile-info">
+          <h1>Kieu Trinh's Workbench <span class="cn">个人工作台</span></h1>
+          <p style="color: var(--text-muted);">Business Administration Student & Future Global Marketer 🎓</p>
+          
+          <div class="icons-bar">
+            <span>🐢</span><span>🍃</span><span>☕</span><span>🎨</span><span>✈️</span>
+          </div>
+
+          <div class="quote-box">
+            ✨ "I must work hard to stand proud as an equal beside my idol."
+          </div>
+        </div>
+
+        <div class="music-card">
+          <h3>🎵 Now Playing / 正在播放</h3>
+          <p style="font-weight: 600; font-size: 1.1rem; margin-top: 4px;">"What You Want" - CORTIS</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid-2">
+      <div>
+        <div class="card">
+          <div class="card-title">
+            <span>📚 Daily Study Routine (1.5 Hours / Day)</span>
+            <span class="cn">每日学习计划</span>
+          </div>
+          
+          <div class="routine-item">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=200&q=80" class="thumb-img">
+            <div class="item-content">
+              <strong>30 Mins — English Practice 🌐</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">IELTS Vocab & Listening drills (Goal: IELTS 6.0+)</p>
+            </div>
+            <span class="tag">Slot 1</span>
+          </div>
+
+          <div class="routine-item">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=200&q=80" class="thumb-img">
+            <div class="item-content">
+              <strong>30 Mins — Korean Practice 🇰🇷</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Hangul & Anki Flashcards (Goal: TOPIK 3-4)</p>
+            </div>
+            <span class="tag">Slot 2</span>
+          </div>
+
+          <div class="routine-item">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=200&q=80" class="thumb-img">
+            <div class="item-content">
+              <strong>30 Mins — Marketing Skill Building 📈</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Google Digital Garage & Meta Blueprint</p>
+            </div>
+            <span class="tag">Slot 3</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>💼 Career Targets & Roadmap (2026-2028)</span>
+            <span class="cn">职业目标与规划</span>
+          </div>
+          <p><strong>Dream Target:</strong> Marketing Specialist at <strong>HYBE Labels</strong> or Global Cosmetic Corporations 💖</p>
+          
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Minimum Target</th>
+                <th>Ideal Benchmark</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>GPA</strong></td><td>Cumulative ≥ 2.8/4.0</td><td>GPA ≥ 3.0+ / Academic Awards</td></tr>
+              <tr><td><strong>Korean</strong></td><td>TOPIK Level 3</td><td>TOPIK Level 4+</td></tr>
+              <tr><td><strong>English</strong></td><td>B1 (IELTS 5.0)</td><td>B2 (IELTS 6.0 - 6.5)</td></tr>
+              <tr><td><strong>Certs</strong></td><td>Google Digital Marketing</td><td>Meta Blueprint + HubSpot</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>✈️ Dream Travel Bucket List</span>
+            <span class="cn">梦想旅行清单</span>
+          </div>
+          
+          <div class="travel-item">
+            <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=200&q=80" class="thumb-img">
+            <div class="item-content">
+              <strong>🇨🇭 Switzerland (Thụy Sĩ) — 2029</strong><br>
+              <small>Explore the majestic Alps & fairytale villages</small>
+            </div>
+            <span class="tag pink">Target 2029</span>
+          </div>
+
+          <div class="travel-item">
+            <img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=200&q=80" class="thumb-img">
+            <div class="item-content">
+              <strong>🇰🇷 South Korea (Hàn Quốc) — 2028</strong><br>
+              <small>Graduation trip & career opportunities in Seoul</small>
+            </div>
+            <span class="tag pink">Target 2028</span>
+          </div>
+
+          <div class="travel-item">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=200&q=80" class="thumb-img">
+            <div class="item-content">
+              <strong>🇫🇷 Paris, France (Pháp) — 2030</strong><br>
+              <small>Afternoon coffee by the Eiffel Tower</small>
+            </div>
+            <span class="tag pink">Target 2030</span>
+          </div>
+
+          <div class="travel-item">
+            <img src="https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=200&q=80" class="thumb-img">
+            <div class="item-content">
+              <strong>🇳🇱 Netherlands (Hà Lan) — 2031</strong><br>
+              <small>Tulip fields & iconic windmills</small>
+            </div>
+            <span class="tag pink">Target 2031</span>
+          </div>
+
+          <div class="travel-item">
+            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=200&q=80" class="thumb-img">
+            <div class="item-content">
+              <strong>🇬🇧 London, UK (Anh) — 2032</strong><br>
+              <small>Big Ben & strolls along the Thames</small>
+            </div>
+            <span class="tag pink">Target 2032</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="text-align: center; padding: 20px;">
+          <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=400&q=80" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 12px;">
+          <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">"Slow down, drink coffee & keep creating." ☕🍃</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>⏱️ 30-Min Focus Timer</span>
+            <span class="cn">30分钟专注计时</span>
+          </div>
+          <div class="timer-display" id="timer">30:00</div>
+          <button class="btn" onclick="toggleTimer()" id="timerBtn">Start Focus / 开始专注</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>📝 Quick Notes & Drawing Ideas</span>
+            <span class="cn">随手记 / 绘画灵感</span>
+          </div>
+          <textarea id="notesArea" placeholder="Write down your goals, inspiration, or art ideas..."></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let timeLeft = 1800;
+    let timerId = null;
+
+    function toggleTimer() {
+      const btn = document.getElementById('timerBtn');
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+        btn.innerText = 'Start Focus / 开始专注';
+      } else {
+        timerId = setInterval(() => {
+          if (timeLeft > 0) {
+            timeLeft--;
+            let mins = Math.floor(timeLeft / 60);
+            let secs = timeLeft % 60;
+            document.getElementById('timer').innerText = 
+              `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+          } else {
+            clearInterval(timerId);
+            alert('Focus session complete! Take a break & sip some coffee ☕');
+          }
+        }, 1000);
+        btn.innerText = 'Pause / 暂停';
+      }
+    }
+
+    const notes = document.getElementById('notesArea');
+    notes.value = localStorage.getItem('trinh_notes') || '';
+    notes.addEventListener('input', () => {
+      localStorage.setItem('trinh_notes', notes.value);
+    });
+  </script>
+</body>
+</html>
