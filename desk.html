@@ -1,476 +1,498 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kieu Trinh's Bear & Turtle Desk | 🐢 个人温馨工作台</title>
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            creamBg: '#F7F4EB',
-            creamCard: '#FFFFFF',
-            creamSidebar: '#F0EBE1',
-            sageGreen: '#709775',
-            sageLight: '#E8F0E9',
-            sageDark: '#415D43',
-            turtleLime: '#8FBC8F',
-            pastelPink: '#F7D6D0',
-            textMain: '#2B2D2F',
-            textMuted: '#74777B'
-          },
-          fontFamily: {
-            serifHeading: ['"Instrument Serif"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            rounded: ['Quicksand', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-  
+  <title>Hồ Thị Kiều Trinh | Personal Desk 🐢🍃</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --sage-bg: #F4F7F4;
+      --sage-primary: #5A8F7B;
+      --sage-light: #E3EDE7;
+      --sage-accent: #87A997;
+      --pastel-pink: #FFCCD5;
+      --pastel-pink-light: #FFF0F3;
+      --text-main: #2C3E35;
+      --text-muted: #6C7D73;
+      --white-card: rgba(255, 255, 255, 0.92);
+      --shadow: 0 10px 30px rgba(90, 143, 123, 0.1);
+      --border-radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background-color: #F7F4EB;
-      color: #2B2D2F;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    
-    .serif-title {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+      background: linear-gradient(135deg, #E3EDE7 0%, #F4F7F4 50%, #FFF0F3 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 25px;
     }
 
-    .sidebar-item {
-      transition: all 0.2s ease;
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 25px;
     }
 
-    .sidebar-item.active {
-      background-color: #E8F0E9;
-      color: #415D43;
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--white-card);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      height: fit-content;
+      border: 1px solid rgba(255,255,255,0.8);
+      position: sticky;
+      top: 25px;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--sage-primary);
+      margin-bottom: 20px;
+    }
+
+    .user-profile-card {
+      background: var(--sage-light);
+      padding: 14px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .user-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--sage-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-item {
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+
+    .menu-item:hover, .menu-item.active {
+      background: var(--sage-light);
+      color: var(--sage-primary);
+      font-weight: 600;
+    }
+
+    /* Main Content Area */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .top-bar {
+      background: var(--white-card);
+      padding: 16px 24px;
+      border-radius: var(--border-radius);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .date-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .weather-badge {
+      background: var(--sage-light);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--sage-primary);
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      background: var(--white-card);
+      border-radius: var(--border-radius);
+      padding: 35px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .hero-card h1 {
+      font-size: 2.2rem;
+      color: var(--sage-primary);
+      margin-bottom: 8px;
+    }
+
+    .hero-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    .quote-box {
+      background: var(--pastel-pink-light);
+      border-left: 4px solid var(--pastel-pink);
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-style: italic;
+      color: #A64B63;
+      font-weight: 500;
+    }
+
+    /* Tabs Content Panels */
+    .tab-pane {
+      display: none;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .tab-pane.active {
+      display: flex;
+    }
+
+    .card {
+      background: var(--white-card);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      color: var(--sage-primary);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-weight: 700;
     }
 
-    .glass-card {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(220, 215, 200, 0.6);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      border-radius: 24px;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
 
-    .tab-content {
-      display: none;
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
     }
 
-    .tab-content.active {
-      display: block;
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--sage-light);
+      font-size: 0.95rem;
     }
 
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #F7F4EB; }
-    ::-webkit-scrollbar-thumb { background: #C5D5C5; border-radius: 99px; }
+    .info-row span:last-child {
+      font-weight: 600;
+      color: var(--sage-primary);
+    }
+
+    /* Music Player Box */
+    .music-container {
+      background: linear-gradient(135deg, #5A8F7B, #87A997);
+      color: white;
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .music-player-frame {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 12px;
+      background: rgba(0,0,0,0.1);
+    }
+
+    .music-player-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .song-switch-btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .song-btn {
+      flex: 1;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      padding: 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+
+    .song-btn.active, .song-btn:hover {
+      background: white;
+      color: var(--sage-primary);
+    }
+
+    /* Routine & Checklist items */
+    .item-box {
+      background: var(--sage-light);
+      padding: 14px 18px;
+      border-radius: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tag {
+      background: white;
+      color: var(--sage-primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    textarea {
+      width: 100%;
+      height: 140px;
+      border: 2px solid var(--sage-light);
+      border-radius: 14px;
+      padding: 14px;
+      font-family: inherit;
+      outline: none;
+      resize: vertical;
+      font-size: 0.95rem;
+    }
+
+    textarea:focus {
+      border-color: var(--sage-primary);
+    }
   </style>
 </head>
-<body class="min-h-screen flex text-textMain">
+<body>
 
-  <!-- LEFT SIDEBAR MENU -->
-  <aside class="w-64 bg-creamSidebar border-r border-[#E5DFD3] p-6 flex flex-col justify-between shrink-0 hidden md:flex min-h-screen sticky top-0">
-    <div>
-      <!-- Logo Header -->
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-10 h-10 bg-sageGreen text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
-          🐢
-        </div>
+  <div class="layout">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span>🐢</span> <span>Trinh's Desk</span>
+      </div>
+
+      <div class="user-profile-card">
+        <div class="user-avatar">Tr</div>
         <div>
-          <h1 class="font-bold text-base text-sageDark font-rounded leading-tight">Trinh's Desk</h1>
-          <p class="text-[10px] text-textMuted uppercase tracking-wider font-semibold">STUDY AT YOUR PACE</p>
+          <strong style="font-size: 0.95rem; display: block;">Hồ Thị Kiều Trinh</strong>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">19 tuổi • HUIT 🎓</span>
         </div>
       </div>
 
-      <!-- User Info Card -->
-      <div class="bg-white/80 border border-[#E5DFD3] p-3 rounded-2xl mb-6 flex items-center gap-3">
-        <div class="w-9 h-9 bg-amber-100 rounded-xl flex items-center justify-center text-lg">
-          🐻
-        </div>
-        <div>
-          <div class="text-xs font-bold text-textMain">Kieu Trinh</div>
-          <div class="text-[10px] text-textMuted">Turtle & Bear • Student</div>
-        </div>
+      <ul class="menu-list">
+        <li class="menu-item active" onclick="switchTab('overview', this)">🏠 Tổng quan (Overview)</li>
+        <li class="menu-item" onclick="switchTab('study', this)">📚 Học tập & Mục tiêu</li>
+        <li class="menu-item" onclick="switchTab('sports', this)">⚽ Thể thao & Thời trang</li>
+        <li class="menu-item" onclick="switchTab('music', this)">🎵 Góc âm nhạc (Music)</li>
+        <li class="menu-item" onclick="switchTab('notes', this)">📝 Ghi chú thơ mộng</li>
+      </ul>
+    </aside>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="main-content">
+      
+      <div class="top-bar">
+        <span class="date-text" id="liveDate">Saturday, November 7, 2026</span>
+        <div class="weather-badge">🌤️ Ho Chi Minh City • 27°C</div>
       </div>
 
-      <!-- Navigation Links -->
-      <nav class="space-y-1">
-        <div class="text-[10px] font-bold text-textMuted uppercase tracking-wider px-3 py-2">YOUR SPACE</div>
-        
-        <button onclick="switchTab('overview')" id="nav-overview" class="sidebar-item active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-textMuted hover:bg-sageLight/60">
-          <span>🏠</span> Overview
-        </button>
-
-        <button onclick="switchTab('semester')" id="nav-semester" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-textMuted hover:bg-sageLight/60">
-          <span>📚</span> Daily Routine
-        </button>
-
-        <button onclick="switchTab('rhythm')" id="nav-rhythm" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-textMuted hover:bg-sageLight/60">
-          <span>⏱️</span> Study Rhythm & Music
-        </button>
-
-        <button onclick="switchTab('projects')" id="nav-projects" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-textMuted hover:bg-sageLight/60">
-          <span>💼</span> Career & Travel Goals
-        </button>
-
-        <button onclick="switchTab('notes')" id="nav-notes" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-textMuted hover:bg-sageLight/60">
-          <span>📝</span> Quick Notes
-        </button>
-      </nav>
-    </div>
-
-    <!-- Sidebar Bottom Status -->
-    <div class="pt-4 border-t border-[#E5DFD3] text-[11px] text-textMuted flex items-center justify-between">
-      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Online</span>
-      <span class="font-bold text-sageDark">Goal: 2026-2028</span>
-    </div>
-  </aside>
-
-  <!-- MAIN DASHBOARD CONTENT AREA -->
-  <main class="flex-1 p-6 md:p-10 max-w-6xl mx-auto space-y-8">
-
-    <!-- TOP BAR (Date & Weather) -->
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <div>
-        <div class="text-[11px] font-bold text-textMuted uppercase tracking-widest">TODAY, AT YOUR OWN PACE</div>
-        <div id="dateDisplay" class="text-sm font-semibold text-textMain mt-0.5">Loading date...</div>
-      </div>
-
-      <!-- Weather Widget (Ho Chi Minh City) -->
-      <div class="bg-white/80 border border-[#E5DFD3] px-4 py-2 rounded-2xl flex items-center gap-4 text-xs">
-        <div class="flex items-center gap-2">
-          <span class="text-lg">☀️</span>
-          <div>
-            <div class="font-bold text-textMain">Ho Chi Minh City</div>
-            <div class="text-[10px] text-textMuted">Weather updates live</div>
+      <!-- TAB 1: OVERVIEW -->
+      <div id="overview" class="tab-pane active">
+        <div class="hero-card">
+          <h1>Good evening, Kiều Trinh. 🍃</h1>
+          <p>Learn at your own pace, breathe deeply, and bloom gently like a peaceful green turtle.</p>
+          <div class="quote-box">
+            ✨ "I must work hard to stand proud as an equal beside my idol." 💖
           </div>
         </div>
-        <div class="pl-3 border-l border-gray-200">
-          <div class="text-base font-extrabold text-sageDark">29°C</div>
-          <div class="text-[9px] text-textMuted">Pleasant & Sunny</div>
-        </div>
-      </div>
-    </div>
 
-    <!-- MAIN BANNER GREETING -->
-    <div class="glass-card p-8 md:p-10 relative overflow-hidden bg-gradient-to-r from-white via-creamBg to-sageLight/30 border-l-8 border-l-sageGreen">
-      <div class="max-w-xl z-10 relative">
-        <div class="text-xs font-bold text-sageDark uppercase tracking-wider mb-2">STUDENT • INTERNATIONAL BUSINESS</div>
-        <h1 class="serif-title text-4xl sm:text-5xl md:text-6xl text-textMain leading-tight">
-          Good evening, Trinh.<br><span class="italic font-normal">learn at your own pace.</span>
-        </h1>
-        <p class="text-xs sm:text-sm text-textMuted mt-4 leading-relaxed font-medium">
-          A calm space to review lessons, follow your global marketing roadmap, and collect what you want to remember. 🐢🍃
-        </p>
-      </div>
-
-      <!-- Turtle Avatar Badge Inside Banner -->
-      <div class="absolute right-6 bottom-6 md:right-10 md:top-1/2 md:-translate-y-1/2 bg-white/90 border border-sageGreen/30 p-4 rounded-3xl flex items-center gap-4 shadow-sm hidden sm:flex">
-        <div class="w-16 h-16 bg-sageLight text-3xl rounded-2xl flex items-center justify-center border border-sageGreen/40">
-          🐢
-        </div>
-        <div>
-          <div class="font-bold text-sm text-sageDark">Kieu Trinh</div>
-          <div class="text-[11px] text-textMuted">Your chosen nickname</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- QUICK CAPTURE INPUT BAR -->
-    <div class="bg-white/90 border border-[#E5DFD3] p-2 sm:p-3 rounded-2xl flex items-center gap-3 shadow-sm">
-      <div class="flex items-center gap-1.5 px-3 py-1.5 bg-sageLight text-sageDark rounded-xl text-xs font-bold">
-        <span>Quick capture</span>
-      </div>
-      <input type="text" id="quickInput" placeholder="A thought to keep, a small next step..." class="flex-1 bg-transparent text-xs text-textMain outline-none font-medium">
-      <button onclick="saveQuickNote()" class="w-8 h-8 bg-sageGreen hover:bg-sageDark text-white rounded-xl flex items-center justify-center font-bold text-sm transition">
-        +
-      </button>
-    </div>
-
-    <!-- DYNAMIC TABS CONTAINER -->
-    
-    <!-- TAB 1: OVERVIEW -->
-    <div id="tab-overview" class="tab-content active space-y-6">
-      <div class="text-sm font-bold text-textMain flex items-center gap-2">
-        <span>✨</span> What makes this space yours
-      </div>
-
-      <!-- 4 Cards Grid (Matching screenshot layout) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        
-        <div class="glass-card p-5 space-y-2">
-          <div class="flex items-center justify-between text-xs text-textMuted font-bold">
-            <span>STUDENT</span>
-            <span>🎓</span>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title"><span>🎓 Thông tin cá nhân</span><span>2007</span></div>
+            <div class="info-row"><span>Họ và tên:</span><span>Hồ Thị Kiều Trinh</span></div>
+            <div class="info-row"><span>Năm sinh:</span><span>2007 (19 tuổi)</span></div>
+            <div class="info-row"><span>Trường:</span><span>Đại học Công Thương TP.HCM (HUIT)</span></div>
+            <div class="info-row"><span>Lớp:</span><span>16LK_SIU07</span></div>
+            <div class="info-row"><span>Công việc:</span><span>Jollibee (Khu vực Bếp / Dailies Kitchen)</span></div>
           </div>
-          <div class="font-bold text-sm text-textMain">Business Administration</div>
-          <p class="text-[11px] text-textMuted">Specializing in International Business & Global Strategy.</p>
-        </div>
 
-        <div class="glass-card p-5 space-y-2">
-          <div class="flex items-center justify-between text-xs text-textMuted font-bold">
-            <span>TARGET SKILLS</span>
-            <span>🌿</span>
+          <div class="card">
+            <div class="card-title"><span>🌸 Check-in 1 ngày thơ mộng</span><span>Daily</span></div>
+            <div class="item-box"><span>☕ Uống một ngụm trà/cà phê ấm buổi sớm</span><span class="tag">07:00</span></div>
+            <div class="item-box"><span>📚 Ôn 30p tiếng Anh & tiếng Hàn</span><span class="tag">09:00</span></div>
+            <div class="item-box"><span>⚽ Ra sân đá bóng / Vận động thể thao</span><span class="tag">16:30</span></div>
+            <div class="item-box"><span>🎨 Phác thảo vẽ chibi / Viết lách</span><span class="tag">21:00</span></div>
           </div>
-          <div class="font-bold text-sm text-sageDark">IELTS 6.0+ & TOPIK 3-4</div>
-          <p class="text-[11px] text-textMuted">Daily 1.5h language practice drills.</p>
         </div>
-
-        <div class="glass-card p-5 space-y-2">
-          <div class="flex items-center justify-between text-xs text-textMuted font-bold">
-            <span>YOUR TOOLKIT</span>
-            <span>💻</span>
-          </div>
-          <div class="font-bold text-sm text-textMain">Digital Marketing</div>
-          <p class="text-[11px] text-textMuted">Google Digital Garage & Meta Blueprint certs.</p>
-        </div>
-
-        <div class="glass-card p-5 space-y-2">
-          <div class="flex items-center justify-between text-xs text-textMuted font-bold">
-            <span>DREAM TARGET</span>
-            <span>💖</span>
-          </div>
-          <div class="font-bold text-sm text-pink-700">HYBE Labels</div>
-          <p class="text-[11px] text-textMuted">Global Marketing Specialist at HYBE or Cosmetics.</p>
-        </div>
-
       </div>
-    </div>
 
-    <!-- TAB 2: DAILY ROUTINE (THIS SEMESTER) -->
-    <div id="tab-semester" class="tab-content space-y-6">
-      <div class="glass-card p-7 space-y-5">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="font-bold text-lg text-textMain font-rounded">Daily Study Routine (1.5 Hours / Day)</h2>
-            <p class="text-xs text-textMuted">Focus slots for consistent progress</p>
-          </div>
-          <span id="routineBadge" class="text-xs font-bold px-3 py-1 bg-sageLight text-sageDark rounded-full">0 / 3 Slots Done</span>
-        </div>
-
-        <div class="space-y-3">
-          <div class="p-4 bg-creamBg rounded-2xl flex items-center justify-between border border-[#E5DFD3]">
-            <div class="flex items-center gap-3">
-              <span class="text-xl">🌐</span>
-              <div>
-                <div class="font-bold text-xs text-textMain">30 Mins — English Practice</div>
-                <div class="text-[10px] text-textMuted">IELTS Vocab & Listening drills (Goal: 6.0+)</div>
-              </div>
+      <!-- TAB 2: STUDY & GOALS -->
+      <div id="study" class="tab-pane">
+        <div class="card">
+          <div class="card-title"><span>📚 Lịch học & Phát triển bản thân</span><span>1.5h / day</span></div>
+          <div class="item-box">
+            <div>
+              <strong>30 Mins — English Practice (IELTS 6.0+)</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Luyện từ vựng academic & kỹ năng nghe toàn cầu.</p>
             </div>
-            <input type="checkbox" id="c1" onchange="calcRoutine()" class="w-4 h-4 accent-sageGreen cursor-pointer">
+            <span class="tag">Slot 1</span>
           </div>
-
-          <div class="p-4 bg-creamBg rounded-2xl flex items-center justify-between border border-[#E5DFD3]">
-            <div class="flex items-center gap-3">
-              <span class="text-xl">🇰🇷</span>
-              <div>
-                <div class="font-bold text-xs text-textMain">30 Mins — Korean Practice</div>
-                <div class="text-[10px] text-textMuted">Hangul & Anki Flashcards (Goal: TOPIK 3-4)</div>
-              </div>
+          <div class="item-box">
+            <div>
+              <strong>30 Mins — Korean Study (TOPIK 3-4)</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Học giáo trình sơ cấp 2 qua HeyKorea & Anki flashcards.</p>
             </div>
-            <input type="checkbox" id="c2" onchange="calcRoutine()" class="w-4 h-4 accent-sageGreen cursor-pointer">
+            <span class="tag">Slot 2</span>
           </div>
-
-          <div class="p-4 bg-creamBg rounded-2xl flex items-center justify-between border border-[#E5DFD3]">
-            <div class="flex items-center gap-3">
-              <span class="text-xl">📈</span>
-              <div>
-                <div class="font-bold text-xs text-textMain">30 Mins — Marketing Skill Building</div>
-                <div class="text-[10px] text-textMuted">Google Digital Garage & Meta Blueprint</div>
-              </div>
+          <div class="item-box">
+            <div>
+              <strong>30 Mins — Marketing & Business Case</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Nghiên cứu chiến lược thương hiệu (HYBE & Mỹ phẩm).</p>
             </div>
-            <input type="checkbox" id="c3" onchange="calcRoutine()" class="w-4 h-4 accent-sageGreen cursor-pointer">
+            <span class="tag">Slot 3</span>
           </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span>✈️ Dream Travel Bucket List</span><span>2028 - 2032</span></div>
+          <div class="item-box"><span>🇨🇭 Thụy Sĩ (Switzerland) — Dãy Alps hùng vĩ</span><span class="tag" style="background:#FFCCD5; color:#A64B63;">2029</span></div>
+          <div class="item-box"><span>🇰🇷 Hàn Quốc (South Korea) — Chuyến đi Seoul & Sự nghiệp</span><span class="tag" style="background:#FFCCD5; color:#A64B63;">2028</span></div>
+          <div class="item-box"><span>🇫🇷 Pháp (Paris) — Cà phê chiều bên tháp Eiffel</span><span class="tag" style="background:#FFCCD5; color:#A64B63;">2030</span></div>
         </div>
       </div>
-    </div>
 
-    <!-- TAB 3: STUDY RHYTHM & MUSIC PLAYER -->
-    <div id="tab-rhythm" class="tab-content space-y-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Embedded Music Player -->
-        <div class="glass-card p-6 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-xs text-sageDark uppercase tracking-wider flex items-center gap-1.5">
-              <span>🎵</span> Music Player
-            </span>
-            <span class="text-[10px] font-bold px-2.5 py-0.5 bg-pink-100 text-pink-700 rounded-full">CORTIS - What You Want</span>
-          </div>
-
-          <div class="w-full h-44 rounded-2xl overflow-hidden border border-[#E5DFD3]">
-            <iframe id="musicIframe" class="w-full h-full" src="https://www.youtube.com/embed/e2OpbOv_JiQ" title="CORTIS What You Want" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
+      <!-- TAB 3: SPORTS & FASHION -->
+      <div id="sports" class="tab-pane">
+        <div class="card">
+          <div class="card-title"><span>⚽ Thể thao & Xây dựng thể lực</span><span>Energy</span></div>
+          <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem;">
+            Trinh thường xuyên chơi bóng đá ở sân chung cư hoặc giao lưu cùng bạn bè để rèn luyện sức bền, tăng cơ bụng và xua tan mọi áp lực học tập, công việc tại Jollibee.
+          </p>
+          <div class="item-box"><span>🏃‍♂️ Rèn luyện thể lực & sức bền toàn diện</span><span class="tag">Active</span></div>
+          <div class="item-box"><span>🛡️ Giữ tinh thần đồng đội & giải tỏa căng thẳng</span><span class="tag">Mindset</span></div>
         </div>
 
-        <!-- Pomodoro Timer -->
-        <div class="glass-card p-6 text-center space-y-4 flex flex-col justify-center">
-          <div class="text-xs font-bold text-textMuted uppercase tracking-wider">⏱️ 30-MIN TURTLE FOCUS TIMER</div>
-          <div id="timerClock" class="serif-title text-6xl text-sageDark">30:00</div>
+        <div class="card">
+          <div class="card-title"><span>✨ Gu thời trang & Fashion Moodboard</span><span>Martin Edwards Style</span></div>
+          <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem;">
+            Yêu thích phong cách thanh lịch, tối giản nhưng vô cùng cá tính, phóng khoáng tựa như <strong>Martin Edwards</strong>.
+          </p>
+          <div class="item-box"><span>👖 Quần jeans ống rộng cạp cao (Wide-leg dark gray jeans)</span><span class="tag">Favorite</span></div>
+          <div class="item-box"><span>🖤 Áo thun/tank top năng động & Quần short thể thao unisex</span><span class="tag">Streetwear</span></div>
+          <div class="item-box"><span>🎒 Phụ kiện: Túi canvas đen bản lớn & Bờm tóc kim loại</span><span class="tag">Accessory</span></div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MUSIC -->
+      <div id="music" class="tab-pane">
+        <div class="music-container">
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">🎵 Trình phát âm nhạc thơ mộng</h3>
+          <p style="font-size: 0.85rem; opacity: 0.9;" id="currentSongDesc">Đang phát: "Redred" - CORTIS 💖</p>
           
-          <div class="flex items-center justify-center gap-3">
-            <button onclick="toggleTimer()" id="startBtn" class="px-6 py-2.5 bg-sageGreen hover:bg-sageDark text-white font-bold text-xs rounded-xl transition">
-              Start Focus
-            </button>
-            <button onclick="resetTimer()" class="px-4 py-2.5 bg-sageLight text-sageDark font-bold text-xs rounded-xl transition">
-              Reset
-            </button>
+          <div class="song-switch-btns">
+            <button class="song-btn active" onclick="playSong('e2OpbOv_JiQ', '\"Redred\" - CORTIS 💖', this)">CORTIS - Redred</button>
+            <button class="song-btn" onclick="playSong('W46q7yi3iAE', '\"IDOL\" - BTS 👑', this)">BTS - IDOL</button>
           </div>
-        </div>
 
-      </div>
-    </div>
-
-    <!-- TAB 4: CAREER ROADMAP & TRAVEL -->
-    <div id="tab-projects" class="tab-content space-y-6">
-      <!-- HYBE Roadmap Table -->
-      <div class="glass-card p-6 space-y-4">
-        <h3 class="font-bold text-sm text-textMain flex items-center gap-2">
-          <span>💼</span> Career Targets & Roadmap (2026-2028)
-        </h3>
-        
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs border-collapse">
-            <thead>
-              <tr class="border-b border-gray-200 text-textMuted font-bold">
-                <th class="py-2.5 px-3">Category</th>
-                <th class="py-2.5 px-3">Minimum Target</th>
-                <th class="py-2.5 px-3">Ideal Benchmark</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-              <tr><td class="py-2.5 px-3 font-bold">GPA</td><td class="py-2.5 px-3">Cumulative ≥ 2.8/4.0</td><td class="py-2.5 px-3 text-sageDark font-bold">GPA ≥ 3.0+</td></tr>
-              <tr><td class="py-2.5 px-3 font-bold">Korean</td><td class="py-2.5 px-3">TOPIK Level 3</td><td class="py-2.5 px-3 text-sageDark font-bold">TOPIK Level 4+</td></tr>
-              <tr><td class="py-2.5 px-3 font-bold">English</td><td class="py-2.5 px-3">B1 (IELTS 5.0)</td><td class="py-2.5 px-3 text-sageDark font-bold">B2 (IELTS 6.0 - 6.5)</td></tr>
-              <tr><td class="py-2.5 px-3 font-bold">Certifications</td><td class="py-2.5 px-3">Google Digital Marketing</td><td class="py-2.5 px-3 text-sageDark font-bold">Meta Blueprint + HubSpot</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Travel Destinations -->
-      <div class="glass-card p-6 space-y-4">
-        <h3 class="font-bold text-sm text-textMain flex items-center gap-2">
-          <span>✈️</span> Dream Travel Bucket List
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-          <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] text-xs font-bold flex items-center justify-between">
-            <span>🇨🇭 Switzerland</span> <span class="text-[10px] bg-sageLight text-sageDark px-2 py-0.5 rounded-full">2029</span>
-          </div>
-          <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] text-xs font-bold flex items-center justify-between">
-            <span>🇰🇷 South Korea</span> <span class="text-[10px] bg-sageLight text-sageDark px-2 py-0.5 rounded-full">2028</span>
-          </div>
-          <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] text-xs font-bold flex items-center justify-between">
-            <span>🇫🇷 Paris, France</span> <span class="text-[10px] bg-sageLight text-sageDark px-2 py-0.5 rounded-full">2030</span>
-          </div>
-          <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] text-xs font-bold flex items-center justify-between">
-            <span>🇳🇱 Netherlands</span> <span class="text-[10px] bg-sageLight text-sageDark px-2 py-0.5 rounded-full">2031</span>
-          </div>
-          <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] text-xs font-bold flex items-center justify-between sm:col-span-2 md:col-span-1">
-            <span>🇬🇧 London, UK</span> <span class="text-[10px] bg-sageLight text-sageDark px-2 py-0.5 rounded-full">2032</span>
+          <div class="music-player-frame">
+            <iframe id="youtubeFrame" src="https://www.youtube.com/embed/e2OpbOv_JiQ?autoplay=0" title="Music Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- TAB 5: QUICK NOTES -->
-    <div id="tab-notes" class="tab-content space-y-6">
-      <div class="glass-card p-6 space-y-3">
-        <h3 class="font-bold text-sm text-textMain flex items-center justify-between">
-          <span>📝 Quick Auto-Saving Notepad</span>
-          <span class="text-[10px] text-sageDark font-semibold bg-sageLight px-2.5 py-0.5 rounded-full">Saved locally</span>
-        </h3>
-        <textarea id="mainNotes" class="w-full h-48 p-4 bg-creamBg rounded-xl border border-[#E5DFD3] text-xs outline-none resize-none leading-relaxed" placeholder="Write your daily goals, marketing study notes, or inspired thoughts..."></textarea>
+      <!-- TAB 5: NOTES -->
+      <div id="notes" class="tab-pane">
+        <div class="card">
+          <div class="card-title"><span>📝 Sổ tay ý tưởng & Cảm xúc</span><span>Quick Notes</span></div>
+          <textarea id="notesArea" placeholder="Viết lại những ý tưởng vẽ chibi, cảm xúc trong ngày hoặc dự định sắp tới của Trinh ở đây..."></textarea>
+        </div>
       </div>
-    </div>
 
-  </main>
+    </main>
+  </div>
 
-  <!-- JAVASCRIPT LOGIC -->
   <script>
-    // Tab Switcher Logic
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.querySelectorAll('.sidebar-item').forEach(btn => btn.classList.remove('active'));
-
-      document.getElementById('tab-' + tabId).classList.add('active');
-      document.getElementById('nav-' + tabId).classList.add('active');
+    // Tab Switching Function
+    function switchTab(tabId, element) {
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+      document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+      
+      document.getElementById(tabId).classList.add('active');
+      element.classList.add('active');
     }
 
-    // Date Engine
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('dateDisplay').innerText = new Date().toLocaleDateString('en-US', options);
-
-    // Routine Calculator
-    function calcRoutine() {
-      const c1 = document.getElementById('c1').checked;
-      const c2 = document.getElementById('c2').checked;
-      const c3 = document.getElementById('c3').checked;
-      const count = [c1, c2, c3].filter(Boolean).length;
-      document.getElementById('routineBadge').innerText = `${count} / 3 Slots Done`;
+    // Music Switcher Function
+    function playSong(videoId, songTitle, btnElement) {
+      document.getElementById('youtubeFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      document.getElementById('currentSongDesc').innerText = `Đang phát: ${songTitle}`;
+      
+      document.querySelectorAll('.song-btn').forEach(b => b.classList.remove('active'));
+      btnElement.classList.add('active');
     }
 
-    // Pomodoro Engine
-    let timerVal = 1800;
-    let timerId = null;
-    function toggleTimer() {
-      const btn = document.getElementById('startBtn');
-      if (timerId) {
-        clearInterval(timerId);
-        timerId = null;
-        btn.innerText = 'Start Focus';
-      } else {
-        timerId = setInterval(() => {
-          if (timerVal > 0) {
-            timerVal--;
-            let m = Math.floor(timerVal / 60);
-            let s = timerVal % 60;
-            document.getElementById('timerClock').innerText = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-          } else {
-            clearInterval(timerId);
-            alert('Focus finished! Take a coffee break ☕');
-          }
-        }, 1000);
-        btn.innerText = 'Pause';
-      }
-    }
-    function resetTimer() {
-      clearInterval(timerId);
-      timerId = null;
-      timerVal = 1800;
-      document.getElementById('timerClock').innerText = '30:00';
-      document.getElementById('startBtn').innerText = 'Start Focus';
-    }
-
-    // Quick Capture Persistence
-    const notesArea = document.getElementById('mainNotes');
-    notesArea.value = localStorage.getItem('trinh_notion_notes') || '';
-    notesArea.addEventListener('input', () => {
-      localStorage.setItem('trinh_notion_notes', notesArea.value);
+    // Auto-save Notes
+    const notes = document.getElementById('notesArea');
+    notes.value = localStorage.getItem('trinh_desk_notes') || '';
+    notes.addEventListener('input', () => {
+      localStorage.setItem('trinh_desk_notes', notes.value);
     });
 
-    function saveQuickNote() {
-      const inp = document.getElementById('quickInput');
-      if (inp.value.trim()) {
-        notesArea.value += '\n• ' + inp.value.trim();
-        localStorage.setItem('trinh_notion_notes', notesArea.value);
-        inp.value = '';
-        alert('Saved to Quick Notes!');
-      }
-    }
+    // Live Date Formatting
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('liveDate').innerText = new Date().toLocaleDateString('en-US', options);
   </script>
 </body>
 </html>
