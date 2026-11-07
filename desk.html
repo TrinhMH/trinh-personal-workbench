@@ -3,490 +3,608 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kieu Trinh's Personal Workbench | 🐢🍃</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Kieu Trinh's Personal Workspace | 🐢🍃</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            creamBg: '#F7F4EB',
+            creamCard: '#FFFFFF',
+            creamSidebar: '#F2EDE4',
+            sageGreen: '#709775',
+            sageLight: '#E8F0E9',
+            sageDark: '#3B523D',
+            sageCorner: '#4B624E',
+            pastelPink: '#F7D6D0',
+            textMain: '#2B2D2F',
+            textMuted: '#74777B'
+          },
+          fontFamily: {
+            serifHeading: ['"Instrument Serif"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            rounded: ['Quicksand', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
   <style>
-    :root {
-      --sage-bg: #F4F7F4;
-      --sage-primary: #5A8F7B;
-      --sage-light: #E3EDE7;
-      --sage-accent: #87A997;
-      --pastel-pink: #FFCCD5;
-      --pastel-pink-light: #FFF0F3;
-      --text-main: #2C3E35;
-      --text-muted: #6C7D73;
-      --white-card: rgba(255, 255, 255, 0.95);
-      --shadow: 0 10px 30px rgba(90, 143, 123, 0.12);
-      --border-radius: 20px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
+      background-color: #F7F4EB;
+      color: #2B2D2F;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: linear-gradient(135deg, #E3EDE7 0%, #F4F7F4 50%, #FFF0F3 100%);
-      color: var(--text-main);
-      min-height: 100vh;
-      padding: 30px 20px;
+    }
+    
+    .serif-title {
+      font-family: 'Instrument Serif', serif;
     }
 
-    .layout {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 30px;
+    .sidebar-item {
+      transition: all 0.2s ease;
+      color: #555A5D;
     }
 
-    @media (max-width: 900px) {
-      .layout { grid-template-columns: 1fr; }
+    .sidebar-item:hover {
+      background-color: rgba(232, 240, 233, 0.7);
+      color: #3B523D;
     }
 
-    /* Sidebar */
-    .sidebar {
-      background: var(--white-card);
-      border-radius: var(--border-radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      height: fit-content;
-      border: 1px solid rgba(255,255,255,0.9);
-      position: sticky;
-      top: 30px;
-    }
-
-    .sidebar-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.1rem;
+    .sidebar-item.active {
+      background-color: #E8F0E9;
+      color: #3B523D;
       font-weight: 700;
-      color: var(--sage-primary);
-      margin-bottom: 20px;
     }
 
-    .user-profile-card {
-      background: var(--sage-light);
-      padding: 16px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
+    .glass-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(220, 215, 200, 0.65);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      border-radius: 24px;
     }
 
-    .user-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--sage-primary);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-
-    .menu-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .menu-item {
-      padding: 12px 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 500;
-      color: var(--text-muted);
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.95rem;
-    }
-
-    .menu-item:hover, .menu-item.active {
-      background: var(--sage-light);
-      color: var(--sage-primary);
-      font-weight: 600;
-    }
-
-    /* Main Content Area */
-    .main-content {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .top-bar {
-      background: var(--white-card);
-      padding: 16px 24px;
-      border-radius: var(--border-radius);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: var(--shadow);
-    }
-
-    .date-text {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .weather-badge {
-      background: var(--sage-light);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--sage-primary);
-    }
-
-    /* Hero Banner */
-    .hero-card {
-      background: var(--white-card);
-      border-radius: var(--border-radius);
-      padding: 40px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.9);
-    }
-
-    .hero-card h1 {
-      font-size: 2.3rem;
-      color: var(--sage-primary);
-      margin-bottom: 10px;
-    }
-
-    .hero-card p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      margin-bottom: 20px;
-    }
-
-    .quote-box {
-      background: var(--pastel-pink-light);
-      border-left: 4px solid var(--pastel-pink);
-      padding: 16px 20px;
-      border-radius: 12px;
-      font-style: italic;
-      color: #A64B63;
-      font-weight: 500;
-    }
-
-    /* Tabs Content Panels */
-    .tab-pane {
+    .tab-content {
       display: none;
-      flex-direction: column;
-      gap: 30px;
     }
 
-    .tab-pane.active {
-      display: flex;
+    .tab-content.active {
+      display: block;
     }
 
-    .card {
-      background: var(--white-card);
-      border-radius: var(--border-radius);
-      padding: 30px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.9);
-    }
-
-    .card-title {
-      font-size: 1.3rem;
-      color: var(--sage-primary);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-weight: 700;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    @media (max-width: 768px) {
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--sage-light);
-      font-size: 0.95rem;
-    }
-
-    .info-row span:last-child {
-      font-weight: 600;
-      color: var(--sage-primary);
-    }
-
-    /* Music Player Box */
-    .music-container {
-      background: linear-gradient(135deg, #5A8F7B, #87A997);
-      color: white;
-      padding: 24px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-    }
-
-    .music-player-frame {
-      width: 100%;
-      height: 180px;
-      border-radius: 14px;
-      overflow: hidden;
-      margin-top: 15px;
-      background: rgba(0,0,0,0.1);
-    }
-
-    .music-player-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .song-switch-btns {
-      display: flex;
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .song-btn {
-      flex: 1;
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.4);
-      color: white;
-      padding: 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: 0.2s;
-    }
-
-    .song-btn.active, .song-btn:hover {
-      background: white;
-      color: var(--sage-primary);
-    }
-
-    /* Item and Checklist Boxes */
-    .item-box {
-      background: var(--sage-light);
-      padding: 16px 20px;
-      border-radius: 14px;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .tag {
-      background: white;
-      color: var(--sage-primary);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    textarea {
-      width: 100%;
-      height: 160px;
-      border: 2px solid var(--sage-light);
-      border-radius: 14px;
-      padding: 16px;
-      font-family: inherit;
-      outline: none;
-      resize: vertical;
-      font-size: 0.95rem;
-    }
-
-    textarea:focus {
-      border-color: var(--sage-primary);
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #F7F4EB; }
+    ::-webkit-scrollbar-thumb { background: #C5D5C5; border-radius: 99px; }
   </style>
 </head>
-<body>
+<body class="min-h-screen flex text-textMain">
 
-  <div class="layout">
-    <!-- SIDEBAR NAVIGATION -->
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <span>🐢</span> <span>Trinh's Workspace</span>
-      </div>
-
-      <div class="user-profile-card">
-        <div class="user-avatar">Tr</div>
+  <!-- LEFT SIDEBAR MENU (Matching Notion Image Layout Exactly) -->
+  <aside class="w-72 bg-creamSidebar border-r border-[#E5DFD3] p-5 flex flex-col justify-between shrink-0 hidden md:flex min-h-screen sticky top-0">
+    <div class="space-y-6">
+      
+      <!-- Workspace Brand -->
+      <div class="flex items-center gap-3 pt-2 px-2">
+        <div class="w-10 h-10 bg-sageGreen text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+          🐢
+        </div>
         <div>
-          <strong style="font-size: 0.95rem; display: block;">Hồ Thị Kiều Trinh</strong>
-          <span style="font-size: 0.78rem; color: var(--text-muted);">Age 19 • HUIT 🎓</span>
+          <h1 class="font-bold text-base text-sageDark font-rounded leading-tight">Turtle's Desk</h1>
+          <p class="text-[10px] text-textMuted uppercase tracking-wider font-semibold">STUDY AT YOUR PACE</p>
         </div>
       </div>
 
-      <ul class="menu-list">
-        <li class="menu-item active" onclick="switchTab('overview', this)">🏠 Overview</li>
-        <li class="menu-item" onclick="switchTab('study', this)">📚 Academic & Goals</li>
-        <li class="menu-item" onclick="switchTab('sports', this)">⚽ Sports & Fashion</li>
-        <li class="menu-item" onclick="switchTab('music', this)">🎵 Music Player</li>
-        <li class="menu-item" onclick="switchTab('notes', this)">📝 Quick Notes</li>
-      </ul>
-    </aside>
+      <!-- User Profile Badge -->
+      <div class="bg-white/80 border border-[#E5DFD3] p-3 rounded-2xl flex items-center gap-3">
+        <div class="w-9 h-9 bg-amber-100 rounded-xl flex items-center justify-center text-lg">
+          🐻
+        </div>
+        <div>
+          <div class="text-xs font-bold text-textMain">Kiều Trinh</div>
+          <div class="text-[10px] text-textMuted">HUIT • 16LK_SIU07</div>
+        </div>
+      </div>
 
-    <!-- MAIN DASHBOARD -->
-    <main class="main-content">
+      <!-- NAV SECTION: YOUR SPACE -->
+      <div class="space-y-1">
+        <div class="text-[10px] font-bold text-textMuted uppercase tracking-wider px-3 py-1">YOUR SPACE</div>
+        
+        <button onclick="switchTab('overview')" id="nav-overview" class="sidebar-item active w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium">
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Overview
+        </button>
+
+        <button onclick="switchTab('semester')" id="nav-semester" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium">
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+          This semester
+        </button>
+
+        <button onclick="switchTab('rhythm')" id="nav-rhythm" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium">
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Study rhythm
+        </button>
+
+        <button onclick="switchTab('projects')" id="nav-projects" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium">
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          Projects & research
+        </button>
+      </div>
+
+      <div class="border-t border-[#E5DFD3] pt-3 space-y-1">
+        <button onclick="switchTab('interests')" id="nav-interests" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium">
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          Study & interests
+        </button>
+
+        <button onclick="switchTab('agent')" id="nav-agent" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium">
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          Agent idea
+        </button>
+
+        <button onclick="switchTab('notes')" id="nav-notes" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium">
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Quick notes
+        </button>
+
+        <button onclick="switchTab('music')" id="nav-music" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium">
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+          Music Sanctuary
+        </button>
+      </div>
+    </div>
+
+    <!-- SIDEBAR BOTTOM WIDGET (Matching image dark green card) -->
+    <div class="mt-6">
+      <div class="bg-sageCorner text-white p-4 rounded-3xl space-y-1 shadow-sm">
+        <div class="text-[10px] text-white/70 font-semibold tracking-wider">Turtle's little corner</div>
+        <div class="serif-title text-xl text-white font-normal leading-snug">One step at a time.</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN DASHBOARD CONTENT AREA -->
+  <main class="flex-1 p-6 md:p-10 max-w-6xl mx-auto space-y-8">
+
+    <!-- TOP BAR (Date & Weather) -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold text-textMuted uppercase tracking-widest">TODAY, AT YOUR OWN PACE</div>
+        <div id="dateDisplay" class="text-sm font-semibold text-textMain mt-0.5">Loading date...</div>
+      </div>
+
+      <!-- Live Weather Badge -->
+      <div class="bg-white/90 border border-[#E5DFD3] px-4 py-2 rounded-2xl flex items-center gap-4 text-xs shadow-sm">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">🌤️</span>
+          <div>
+            <div class="font-bold text-textMain">Ho Chi Minh City</div>
+            <div class="text-[10px] text-textMuted">Open-Meteo Live</div>
+          </div>
+        </div>
+        <div class="pl-3 border-l border-gray-200">
+          <div class="text-base font-extrabold text-sageDark">27°C</div>
+          <div class="text-[9px] text-textMuted">Light drizzle • HCMC</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1: OVERVIEW -->
+    <div id="tab-overview" class="tab-content active space-y-8">
       
-      <div class="top-bar">
-        <span class="date-text" id="liveDate">Saturday, November 7, 2026</span>
-        <div class="weather-badge">🌤️ Ho Chi Minh City • 27°C</div>
-      </div>
-
-      <!-- TAB 1: OVERVIEW -->
-      <div id="overview" class="tab-pane active">
-        <div class="hero-card">
-          <h1>Good evening, Kiều Trinh. 🍃</h1>
-          <p>Learn at your own pace, breathe deeply, and bloom gracefully like a peaceful green turtle in your own sanctuary.</p>
-          <div class="quote-box">
-            ✨ "I must work hard to stand proud as an equal beside my idol." 💖
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title"><span>🎓 Personal Profile</span><span>2007</span></div>
-            <div class="info-row"><span>Full Name:</span><span>Hồ Thị Kiều Trinh</span></div>
-            <div class="info-row"><span>Year of Birth:</span><span>2007 (Age 19)</span></div>
-            <div class="info-row"><span>University:</span><span>Ho Chi Minh City University of Industry and Trade (HUIT)</span></div>
-            <div class="info-row"><span>Class:</span><span>16LK_SIU07</span></div>
-            <div class="info-row"><span>Work Position:</span><span>Jollibee (Dailies Kitchen Team)</span></div>
-          </div>
-
-          <div class="card">
-            <div class="card-title"><span>🌸 Daily Poetic Routine</span><span>Habits</span></div>
-            <div class="item-box"><span>☕ Sip warm tea or coffee & read quietly</span><span class="tag">07:00</span></div>
-            <div class="item-box"><span>📚 30 mins English & Korean practice</span><span class="tag">09:00</span></div>
-            <div class="item-box"><span>⚽ Football session / physical stamina workout</span><span class="tag">16:30</span></div>
-            <div class="item-box"><span>🎨 Digital sketching / chibi character illustration</span><span class="tag">21:00</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 2: STUDY & GOALS -->
-      <div id="study" class="tab-pane">
-        <div class="card">
-          <div class="card-title"><span>📚 Daily Study Routine</span><span>1.5 Hours / Day</span></div>
-          <div class="item-box">
-            <div>
-              <strong>30 Mins — English Practice (IELTS 6.0+)</strong>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Advanced academic vocabulary & listening drills.</p>
-            </div>
-            <span class="tag">Slot 1</span>
-          </div>
-          <div class="item-box">
-            <div>
-              <strong>30 Mins — Korean Study (TOPIK Level 3-4)</strong>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Mastering beginner level 2 via HeyKorea & Anki.</p>
-            </div>
-            <span class="tag">Slot 2</span>
-          </div>
-          <div class="item-box">
-            <div>
-              <strong>30 Mins — Marketing Skill Building</strong>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Analyzing brand campaigns (HYBE & Cosmetics Industry).</p>
-            </div>
-            <span class="tag">Slot 3</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span>✈️ Dream Travel Bucket List</span><span>2028 - 2032</span></div>
-          <div class="item-box"><span>🇨🇭 Switzerland — Majestic Alps & fairytale villages</span><span class="tag" style="background:#FFCCD5; color:#A64B63;">2029</span></div>
-          <div class="item-box"><span>🇰🇷 South Korea — Graduation trip & career opportunities in Seoul</span><span class="tag" style="background:#FFCCD5; color:#A64B63;">2028</span></div>
-          <div class="item-box"><span>🇫🇷 Paris, France — Afternoon coffee near the Eiffel Tower</span><span class="tag" style="background:#FFCCD5; color:#A64B63;">2030</span></div>
-        </div>
-      </div>
-
-      <!-- TAB 3: SPORTS & FASHION -->
-      <div id="sports" class="tab-pane">
-        <div class="card">
-          <div class="card-title"><span>⚽ Sports & Physical Stamina</span><span>Energy & Health</span></div>
-          <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem;">
-            Regularly playing football at residential yards or local pitches with peers helps build core muscle tone, enhance stamina, and proactively relieve stress from university studies and work commitments at Jollibee.
+      <!-- HERO BANNER -->
+      <div class="glass-card p-8 md:p-10 relative overflow-hidden bg-gradient-to-r from-white via-creamBg to-sageLight/30 border-l-8 border-l-sageGreen">
+        <div class="max-w-xl z-10 relative">
+          <div class="text-xs font-bold text-sageDark uppercase tracking-wider mb-2">STUDENT • INTERNATIONAL BUSINESS (HUIT)</div>
+          <h1 class="serif-title text-4xl sm:text-5xl md:text-6xl text-textMain leading-tight">
+            Good evening, Kiều Trinh.<br><span class="italic font-normal">learn at your own pace.</span>
+          </h1>
+          <p class="text-xs sm:text-sm text-textMuted mt-4 leading-relaxed font-medium">
+            A calm, poetic sanctuary to review lessons, track your global marketing career roadmap, celebrate football stamina, and collect inspired memories. 🐢🍃
           </p>
-          <div class="item-box"><span>🏃‍♂️ Full-body athletic stamina & endurance training</span><span class="tag">Active</span></div>
-          <div class="item-box"><span>🛡️ Team spirit, stress relief & mental refreshment</span><span class="tag">Mindset</span></div>
         </div>
 
-        <div class="card">
-          <div class="card-title"><span>✨ Fashion Moodboard</span><span>Martin Edwards Style</span></div>
-          <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem;">
-            Passionate about a sleek, minimalist yet bold and modern fashion aesthetic inspired by <strong>Martin Edwards</strong>.
-          </p>
-          <div class="item-box"><span>👖 High-waisted wide-leg dark gray jeans with embroidery</span><span class="tag">Favorite</span></div>
-          <div class="item-box"><span>🖤 Ribbed tank tops & unisex athletic sports shorts</span><span class="tag">Streetwear</span></div>
-          <div class="item-box"><span>🎒 Accessories: Large black canvas crossbody bag & metal headbands</span><span class="tag">Accessory</span></div>
+        <div class="absolute right-6 bottom-6 md:right-10 md:top-1/2 md:-translate-y-1/2 bg-white/95 border border-sageGreen/30 p-4 rounded-3xl flex items-center gap-4 shadow-sm hidden sm:flex">
+          <div class="w-14 h-14 bg-sageLight text-3xl rounded-2xl flex items-center justify-center border border-sageGreen/40">
+            🐢
+          </div>
+          <div>
+            <div class="font-bold text-sm text-sageDark">Kiều Trinh</div>
+            <div class="text-[11px] text-textMuted">Class 16LK_SIU07</div>
+          </div>
         </div>
       </div>
 
-      <!-- TAB 4: MUSIC -->
-      <div id="music" class="tab-pane">
-        <div class="music-container">
-          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">🎵 Immersive Music Sanctuary</h3>
-          <p style="font-size: 0.85rem; opacity: 0.9;" id="currentSongDesc">Now playing: "Redred" - CORTIS 💖</p>
+      <!-- PROFILE & HABIT GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Personal Identity Card -->
+        <div class="glass-card p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-sm text-sageDark flex items-center gap-2">
+              <span>🎓</span> Personal Identity & Academic Background
+            </h3>
+            <span class="text-[10px] bg-sageLight text-sageDark font-bold px-2.5 py-0.5 rounded-full">b. 2007</span>
+          </div>
+
+          <div class="space-y-2 text-xs divide-y divide-gray-100">
+            <div class="flex justify-between py-2">
+              <span class="text-textMuted font-medium">Full Name</span>
+              <span class="font-bold text-textMain">Hồ Thị Kiều Trinh</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span class="text-textMuted font-medium">University</span>
+              <span class="font-bold text-textMain">HUIT (University of Industry & Trade)</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span class="text-textMuted font-medium">Class / Cohort</span>
+              <span class="font-bold text-sageDark">16LK_SIU07</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span class="text-textMuted font-medium">Part-time Role</span>
+              <span class="font-bold text-amber-700">Jollibee (Dailies Kitchen Team 🍗)</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span class="text-textMuted font-medium">Life Motto</span>
+              <span class="font-semibold text-pink-700 italic">"Work hard to stand proud beside idols."</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Daily Poetic Check-in Checklist -->
+        <div class="glass-card p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-sm text-sageDark flex items-center gap-2">
+              <span>🌸</span> Poetic Daily Check-in Routine
+            </h3>
+            <span class="text-[10px] bg-pink-100 text-pink-700 font-bold px-2.5 py-0.5 rounded-full">Daily Habits</span>
+          </div>
+
+          <div class="space-y-2.5 text-xs">
+            <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] flex items-center justify-between">
+              <span class="font-medium">☕ Sip warm green tea & read 10 pages quietly</span>
+              <span class="text-[10px] font-bold text-sageDark bg-white px-2 py-0.5 rounded-md">Morning</span>
+            </div>
+            <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] flex items-center justify-between">
+              <span class="font-medium">📚 30 mins IELTS English vocabulary drills</span>
+              <span class="text-[10px] font-bold text-sageDark bg-white px-2 py-0.5 rounded-md">Focus 1</span>
+            </div>
+            <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] flex items-center justify-between">
+              <span class="font-medium">🇰🇷 30 mins Korean Hangul practice & Anki cards</span>
+              <span class="text-[10px] font-bold text-sageDark bg-white px-2 py-0.5 rounded-md">Focus 2</span>
+            </div>
+            <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] flex items-center justify-between">
+              <span class="font-medium">⚽ Football training session / core stamina exercise</span>
+              <span class="text-[10px] font-bold text-sageDark bg-white px-2 py-0.5 rounded-md">Active</span>
+            </div>
+            <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] flex items-center justify-between">
+              <span class="font-medium">🎨 Digital chibi character sketch & journal entry</span>
+              <span class="text-[10px] font-bold text-sageDark bg-white px-2 py-0.5 rounded-md">Evening</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: THIS SEMESTER -->
+    <div id="tab-semester" class="tab-content space-y-6">
+      <div class="glass-card p-7 space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="font-bold text-base text-textMain font-rounded">Semester Focus & Academic Milestone Targets</h2>
+            <p class="text-xs text-textMuted">Class 16LK_SIU07 • HUIT Academic Roadmap</p>
+          </div>
+          <span class="text-xs font-bold px-3 py-1 bg-sageLight text-sageDark rounded-full">Target 2026-2028</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 bg-creamBg rounded-2xl border border-[#E5DFD3] space-y-2">
+            <div class="text-xs font-bold text-sageDark">🎯 GPA Target</div>
+            <div class="serif-title text-3xl text-textMain">≥ 3.2 / 4.0</div>
+            <p class="text-[11px] text-textMuted">Consistent high honors in International Business & Global Trade courses.</p>
+          </div>
+
+          <div class="p-4 bg-creamBg rounded-2xl border border-[#E5DFD3] space-y-2">
+            <div class="text-xs font-bold text-sageDark">🌐 IELTS Benchmark</div>
+            <div class="serif-title text-3xl text-textMain">6.0 - 6.5+</div>
+            <p class="text-[11px] text-textMuted">Daily 30-minute academic vocabulary and listening practice.</p>
+          </div>
+
+          <div class="p-4 bg-creamBg rounded-2xl border border-[#E5DFD3] space-y-2">
+            <div class="text-xs font-bold text-sageDark">🇰🇷 TOPIK Certification</div>
+            <div class="serif-title text-3xl text-textMain">Level 3 - 4</div>
+            <p class="text-[11px] text-textMuted">Pre-requisite for HYBE Labels & K-Cosmetic corporate applications.</p>
+          </div>
+        </div>
+
+        <!-- Career Target Milestone Table -->
+        <div class="pt-4 space-y-3">
+          <h3 class="font-bold text-xs text-sageDark uppercase tracking-wider">Dream Career Target Benchmarks</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-gray-200 text-textMuted font-bold">
+                  <th class="py-2 px-3">Company Target</th>
+                  <th class="py-2 px-3">Role Aim</th>
+                  <th class="py-2 px-3">Required Credentials</th>
+                  <th class="py-2 px-3">Timeline</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100 font-medium">
+                <tr>
+                  <td class="py-3 px-3 font-bold text-pink-700">HYBE Labels</td>
+                  <td class="py-3 px-3">Global Marketing Specialist</td>
+                  <td class="py-3 px-3">TOPIK 4, IELTS 6.5+, Digital Certs</td>
+                  <td class="py-3 px-3 text-sageDark font-bold">2028 - 2029</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-emerald-700">K-Cosmetics (Amorepacific/LG)</td>
+                  <td class="py-3 px-3">Brand Strategy Associate</td>
+                  <td class="py-3 px-3">Market Case Studies, Meta Blueprint</td>
+                  <td class="py-3 px-3 text-sageDark font-bold">2027 - 2028</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: STUDY RHYTHM -->
+    <div id="tab-rhythm" class="tab-content space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Interactive Pomodoro Timer -->
+        <div class="glass-card p-8 text-center space-y-5 flex flex-col justify-center">
+          <div class="text-xs font-bold text-sageDark uppercase tracking-wider flex items-center justify-center gap-1.5">
+            <span>⏱️</span> 25-MIN TURTLE FOCUS TIMER
+          </div>
+          <div id="pomoClock" class="serif-title text-6xl text-sageDark">25:00</div>
           
-          <div class="song-switch-btns">
-            <button class="song-btn active" onclick="playSong('e2OpbOv_JiQ', '\"Redred\" - CORTIS 💖', this)">CORTIS - Redred</button>
-            <button class="song-btn" onclick="playSong('W46q7yi3iAE', '\"IDOL\" - BTS 👑', this)">BTS - IDOL</button>
+          <div class="flex items-center justify-center gap-3">
+            <button onclick="togglePomo()" id="pomoBtn" class="px-6 py-2.5 bg-sageGreen hover:bg-sageDark text-white font-bold text-xs rounded-xl transition">
+              Start Focus Session
+            </button>
+            <button onclick="resetPomo()" class="px-4 py-2.5 bg-sageLight text-sageDark font-bold text-xs rounded-xl transition">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Daily Rhythm Goals -->
+        <div class="glass-card p-6 space-y-4">
+          <h3 class="font-bold text-sm text-textMain flex items-center gap-2">
+            <span>🌿</span> Daily Energy & Study Rhythms
+          </h3>
+          <div class="space-y-3 text-xs">
+            <div class="p-3.5 bg-creamBg rounded-xl border border-[#E5DFD3] flex items-center justify-between">
+              <div>
+                <div class="font-bold text-textMain">Morning Focus Block</div>
+                <div class="text-[10px] text-textMuted">Language drills & course assignments</div>
+              </div>
+              <span class="font-bold text-sageDark">08:30 - 10:00</span>
+            </div>
+            <div class="p-3.5 bg-creamBg rounded-xl border border-[#E5DFD3] flex items-center justify-between">
+              <div>
+                <div class="font-bold text-textMain">Afternoon Work & Fitness</div>
+                <div class="text-[10px] text-textMuted">Jollibee shift & football match session</div>
+              </div>
+              <span class="font-bold text-amber-700">14:00 - 18:00</span>
+            </div>
+            <div class="p-3.5 bg-creamBg rounded-xl border border-[#E5DFD3] flex items-center justify-between">
+              <div>
+                <div class="font-bold text-textMain">Evening Creative Wind-Down</div>
+                <div class="text-[10px] text-textMuted">Chibi illustration & BTS / CORTIS music</div>
+              </div>
+              <span class="font-bold text-pink-700">20:30 - 22:00</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 4: PROJECTS & RESEARCH -->
+    <div id="tab-projects" class="tab-content space-y-6">
+      <div class="glass-card p-7 space-y-6">
+        <h2 class="font-bold text-base text-textMain font-rounded flex items-center gap-2">
+          <span>💼</span> Academic Projects & International Marketing Research
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-5 bg-creamBg rounded-2xl border border-[#E5DFD3] space-y-2">
+            <span class="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-md">CASE STUDY 01</span>
+            <h3 class="font-bold text-sm text-textMain">Vinamilk International Expansion: China Entry Model</h3>
+            <p class="text-textMuted leading-relaxed">
+              Researching distribution networks, localized branding adaptations, and consumer trust dynamics for Vietnamese FMCG brands entering East Asian markets.
+            </p>
           </div>
 
-          <div class="music-player-frame">
-            <iframe id="youtubeFrame" src="https://www.youtube.com/embed/e2OpbOv_JiQ?autoplay=0" title="Music Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="p-5 bg-creamBg rounded-2xl border border-[#E5DFD3] space-y-2">
+            <span class="text-[10px] font-bold px-2 py-0.5 bg-pink-100 text-pink-800 rounded-md">CASE STUDY 02</span>
+            <h3 class="font-bold text-sm text-textMain">Cocoon Vietnam: Vegan Cosmetics Strategy in South Korea</h3>
+            <p class="text-textMuted leading-relaxed">
+              Analyzing cruelty-free cosmetic positioning, eco-conscious packaging appeals, and influencer partnership frameworks targeting Gen Z Korean consumers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: STUDY & INTERESTS -->
+    <div id="tab-interests" class="tab-content space-y-6">
+      
+      <!-- Football & Physical Stamina -->
+      <div class="glass-card p-6 space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm text-textMain flex items-center gap-2">
+            <span>⚽</span> Football & Physical Stamina Training
+          </h3>
+          <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full">Active Lifestyle</span>
+        </div>
+        <p class="text-xs text-textMuted leading-relaxed">
+          Playing football at residential pitches or community yards provides core stamina, enhances agility, and serves as the ultimate stress relief after intensive HUIT coursework and Jollibee kitchen shifts.
+        </p>
+      </div>
+
+      <!-- Fashion Moodboard -->
+      <div class="glass-card p-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm text-textMain flex items-center gap-2">
+            <span>✨</span> Fashion Moodboard — Martin Edwards Style
+          </h3>
+          <span class="text-[10px] bg-purple-100 text-purple-800 font-bold px-2.5 py-0.5 rounded-full">Sleek & Minimal</span>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] font-semibold">
+            👖 High-waisted wide-leg dark gray denim
+          </div>
+          <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] font-semibold">
+            🖤 Ribbed tank tops & seamless athletic gear
+          </div>
+          <div class="p-3 bg-creamBg rounded-xl border border-[#E5DFD3] font-semibold">
+            🎒 Black canvas crossbody bag & metallic headbands
           </div>
         </div>
       </div>
 
-      <!-- TAB 5: NOTES -->
-      <div id="notes" class="tab-pane">
-        <div class="card">
-          <div class="card-title"><span>📝 Creative Notepad & Reflections</span><span>Quick Notes</span></div>
-          <textarea id="notesArea" placeholder="Jot down your chibi illustration ideas, daily reflections, or upcoming goals here..."></textarea>
+      <!-- Digital Illustration & Crafts -->
+      <div class="glass-card p-6 space-y-3">
+        <h3 class="font-bold text-sm text-textMain flex items-center gap-2">
+          <span>🎨</span> Creative Hobbies: Chibi Sketching & Handcrafted Keychains
+        </h3>
+        <p class="text-xs text-textMuted leading-relaxed">
+          Designing cute chibi turtle and bear character illustrations, crafting custom resin keychains, and curating aesthetic Notion workspaces.
+        </p>
+      </div>
+    </div>
+
+    <!-- TAB 6: AGENT IDEA -->
+    <div id="tab-agent" class="tab-content space-y-6">
+      <div class="glass-card p-7 space-y-5">
+        <h2 class="font-bold text-base text-textMain font-rounded flex items-center gap-2">
+          <span>⌘</span> AI Agent Concepts & Productivity Automation
+        </h2>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-4 bg-creamBg rounded-2xl border border-[#E5DFD3] space-y-1">
+            <div class="font-bold text-sageDark">🤖 Lark / Telegram Study Notification Bot</div>
+            <p class="text-textMuted">Automated reminder agent alerting 30 mins before vocabulary revision sessions and tracking weekly GPA progress.</p>
+          </div>
+
+          <div class="p-4 bg-creamBg rounded-2xl border border-[#E5DFD3] space-y-1">
+            <div class="font-bold text-sageDark">💡 Marketing Intelligence Digest Agent</div>
+            <p class="text-textMuted">AI web scraper concept summarizing daily K-pop marketing campaigns from HYBE, YG, and SM for strategy case studies.</p>
+          </div>
         </div>
       </div>
+    </div>
 
-    </main>
-  </div>
+    <!-- TAB 7: QUICK NOTES -->
+    <div id="tab-notes" class="tab-content space-y-6">
+      <div class="glass-card p-7 space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="font-bold text-base text-textMain font-rounded flex items-center gap-2">
+            <span>📝</span> Quick Auto-Saving Notepad & Daily Journal
+          </h2>
+          <span class="text-[10px] font-bold bg-sageLight text-sageDark px-2.5 py-0.5 rounded-full">Auto-saved to Browser</span>
+        </div>
+        <textarea id="quickNotepad" class="w-full h-56 p-4 bg-creamBg rounded-2xl border border-[#E5DFD3] text-xs outline-none leading-relaxed resize-none" placeholder="Write down your study thoughts, chibi drawing ideas, or reflections for today..."></textarea>
+      </div>
+    </div>
 
+    <!-- TAB 8: MUSIC SANCTUARY -->
+    <div id="tab-music" class="tab-content space-y-6">
+      <div class="glass-card p-7 space-y-5">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="font-bold text-base text-textMain font-rounded">🎵 Music Sanctuary</h2>
+            <p class="text-xs text-textMuted" id="songTitleLabel">Currently playing: CORTIS — Redred 💖</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="playTrack('e2OpbOv_JiQ', 'CORTIS — Redred 💖')" class="px-3 py-1.5 bg-pink-100 text-pink-700 text-xs font-bold rounded-xl hover:bg-pink-200 transition">
+              CORTIS - Redred
+            </button>
+            <button onclick="playTrack('W46q7yi3iAE', 'BTS — IDOL 👑')" class="px-3 py-1.5 bg-amber-100 text-amber-800 text-xs font-bold rounded-xl hover:bg-amber-200 transition">
+              BTS - IDOL
+            </button>
+          </div>
+        </div>
+
+        <div class="w-full h-64 rounded-2xl overflow-hidden border border-[#E5DFD3]">
+          <iframe id="youtubeIframe" class="w-full h-full" src="https://www.youtube.com/embed/e2OpbOv_JiQ" title="Music Player" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    function switchTab(tabId, element) {
-      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-      document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
-      
-      document.getElementById(tabId).classList.add('active');
-      element.classList.add('active');
+    // Tab Switching Engine
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.sidebar-item').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById('tab-' + tabId).classList.add('active');
+      document.getElementById('nav-' + tabId).classList.add('active');
     }
 
-    function playSong(videoId, songTitle, btnElement) {
-      document.getElementById('youtubeFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-      document.getElementById('currentSongDesc').innerText = `Now playing: ${songTitle}`;
-      
-      document.querySelectorAll('.song-btn').forEach(b => b.classList.remove('active'));
-      btnElement.classList.add('active');
-    }
-
-    const notes = document.getElementById('notesArea');
-    notes.value = localStorage.getItem('trinh_desk_notes_en') || '';
-    notes.addEventListener('input', () => {
-      localStorage.setItem('trinh_desk_notes_en', notes.value);
-    });
-
+    // Live Date Formatting
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('liveDate').innerText = new Date().toLocaleDateString('en-US', options);
+    document.getElementById('dateDisplay').innerText = new Date().toLocaleDateString('en-US', options);
+
+    // Pomodoro Timer Engine
+    let pomoVal = 1500;
+    let pomoTimer = null;
+    function togglePomo() {
+      const btn = document.getElementById('pomoBtn');
+      if (pomoTimer) {
+        clearInterval(pomoTimer);
+        pomoTimer = null;
+        btn.innerText = 'Start Focus Session';
+      } else {
+        pomoTimer = setInterval(() => {
+          if (pomoVal > 0) {
+            pomoVal--;
+            let m = Math.floor(pomoVal / 60);
+            let s = pomoVal % 60;
+            document.getElementById('pomoClock').innerText = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+          } else {
+            clearInterval(pomoTimer);
+            alert('Turtle Focus complete! Take a relaxing break ☕');
+          }
+        }, 1000);
+        btn.innerText = 'Pause Focus';
+      }
+    }
+    function resetPomo() {
+      clearInterval(pomoTimer);
+      pomoTimer = null;
+      pomoVal = 1500;
+      document.getElementById('pomoClock').innerText = '25:00';
+      document.getElementById('pomoBtn').innerText = 'Start Focus Session';
+    }
+
+    // Music Player Switcher
+    function playTrack(videoId, title) {
+      document.getElementById('youtubeIframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      document.getElementById('songTitleLabel').innerText = `Currently playing: ${title}`;
+    }
+
+    // Quick Notepad Auto-saving
+    const pad = document.getElementById('quickNotepad');
+    pad.value = localStorage.getItem('trinh_notion_desk_notes') || '';
+    pad.addEventListener('input', () => {
+      localStorage.setItem('trinh_notion_desk_notes', pad.value);
+    });
   </script>
 </body>
 </html>
